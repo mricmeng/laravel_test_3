@@ -32,18 +32,40 @@
 </head>
 <body>
     <div class="container">
-        <form class="bg-secondary-subtle p-5">
+        <form action="{{route('auth.processLogin')}}" class="bg-secondary-subtle p-5" method="POST">
+            @csrf
+            @if (Session::has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>The Message!</strong> {{Session::get('success')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div> 
+            @elseif(Session::has('error')) 
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>The Message!</strong> {{Session::get('error')}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
             <div class="form-header">
                 <h3 class="text-center">LOGIN DASHBOARD</h3>
             </div>
+
             <div class="mb-3">
                 <label class="form-label">Email</label>
-                <input type="email" class="form-control" name="email">
+                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email">
+                @error('email')
+                    <p class="text-danger">{{$message}}</p>
+                @enderror
             </div>
+
             <div class="mb-3">
                 <label class="form-label">Password</label>
-                <input type="password" class="form-control" name="password">
+                <input type="password" class="form-control @error('email') is-invalid @enderror" name="password">
+                @error('email')
+                    <p class="text-danger">{{$message}}</p>
+                @enderror
             </div>
+
             <button type="submit" class="btn btn-primary">Login</button>
             <p>
                 Don't have an account ? 
@@ -55,4 +77,5 @@
     </div>
     
 </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/js/bootstrap.bundle.min.js"></script>
 </html>
