@@ -8,6 +8,7 @@
     <title>Register</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.8/css/bootstrap.min.css">
     <style>
+        
     * {
         padding: 0;
         margin: 0;
@@ -32,6 +33,7 @@
         box-shadow: 1px 1px 4px 0 #888;
         border-radius: 4px;
     }
+
     </style>
 </head>
 

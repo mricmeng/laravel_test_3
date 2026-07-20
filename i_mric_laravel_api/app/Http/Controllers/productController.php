@@ -13,7 +13,7 @@ class productController extends Controller
     /*Display a listing of the resource.*/
     public function index()
     {
-        $products = ProductModel::orderBy('id', 'desc')->get();
+        $products = productModel::orderBy('id', 'desc')->get();
         if ($products == null) {
             return response([
                 'status' => false,
@@ -69,7 +69,7 @@ class productController extends Controller
     
     public function edit(string $id)
     {
-        $product = ProductModel::find($id);
+        $product = productModel::find($id);
         if ($product == null) {
             return response([
                 'status' => false,
@@ -100,7 +100,7 @@ class productController extends Controller
             ], 422);
         }
         //find the product by id and update it
-        $product = ProductModel::find($id);
+        $product = productModel::find($id);
 
         //if not found return 404 error
         if ($product == null) {
@@ -155,7 +155,7 @@ class productController extends Controller
     /*Remove the specified resource from storage.*/
     public function destroy(string $id)
     {
-        $product = ProductModel::find($id);
+        $product = productModel::find($id);
 
         if ($product == null) {
             return response([

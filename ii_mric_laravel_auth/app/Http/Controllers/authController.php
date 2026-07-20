@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\user;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
-
-
 
 
 class authController extends Controller
@@ -61,6 +58,7 @@ class authController extends Controller
             $user->name = $request->input('username');
             $user->email = $request->input('email');
             $user->password = Hash::make($request->input('password'));
+            $user->save();
             
             return redirect()
             ->route('auth.login')
