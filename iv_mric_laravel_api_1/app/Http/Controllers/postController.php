@@ -5,16 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\postModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator as mric;
+use Illuminate\Support\Facades\File;
 
 class postController extends Controller
 {
     public function index(){
         $posts = postModel::orderBy('id', 'DESC')->get();
+        $data = [];
+        foreach($posts as $post){
+            $data[] = [
+                'title' => $post->title,
+                'des'   => $post->des,
+                'img'   => ($post->img !=null) ? asset('images/' .$post->img) : 'empty image',
+            ];
+        }
         
         return response()->json([
             'status'  => true,
             'message' => 'Post was successfully selected',  
-            'posts'   => $posts
+            'posts'   => $data
         ], 200);
     }
 
@@ -35,6 +44,19 @@ class postController extends Controller
         $post = new postModel();
         $post->title = $request->title;
         $post->des   = $request->des;
+
+        if($request->file('img') != null){
+            $file = $request->file('img');
+            $img = rand(000, 99999999) . '.' . $file->getClientOriginalExtension();
+            //342234242.jpg
+
+            //move img to the folder
+            $file->move(public_path('images'), $img);
+
+            //save img to the database 
+            $post->img = $img;
+        }
+        
         $post->save(); 
 
         return response([
@@ -94,7 +116,7 @@ class postController extends Controller
         ], 201);
     }
 
-    public function delete($id){
+    public function delete(string $id){
         $post = postModel::find($id);
 
         if(!$post){
@@ -102,6 +124,13 @@ class postController extends Controller
                 'status' => false,
                 'message' => 'Post not found'
             ], 404);
+        }
+
+        if($post->img != null){
+            $imgDir = public_path('images/' .$post->img);
+            if(File::exists($imgDir)){
+                File::delete($imgDir);
+            }
         }
 
         $post->delete();
