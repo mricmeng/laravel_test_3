@@ -9,10 +9,14 @@ use App\Http\Controllers\postController;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
+Route::post('login', [authController::class, 'login']);
 Route::post('register', [authController::class , 'register']);
 
-Route::get('list', [postController::class, 'index'])->middleware('auth:sanctum');
-Route::post('store', [postController::class, 'store']);
-Route::get('edit/{id}', [postController::class, 'edit']);
-Route::put('update/{id}', [postController::class, 'update']);
-Route::post('delete/{id}', [postController::class, 'delete']);
+Route::middleware('auth:sanctum')->group(function(){
+    Route::get('list', [postController::class, 'index']);
+    Route::post('store', [postController::class, 'store']);
+    Route::get('edit/{id}', [postController::class, 'edit']);
+    Route::put('update/{id}', [postController::class, 'update']);
+    Route::post('delete/{id}', [postController::class, 'delete']);
+    Route::get('logout', [authController::class, 'logout']);
+});
