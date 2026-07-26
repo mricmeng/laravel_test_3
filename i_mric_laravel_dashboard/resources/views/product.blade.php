@@ -21,19 +21,24 @@
                               </tr>
                             </thead>
                             <tbody>
+                              @foreach ($products as $product)    
                               <tr>
-                                <td>P001</td>
+                                <td>P{{ $product->id }}</td>
                                 <td>product.jpg</td>
-                                <td>Iphone 13</td>
-                                <td>$500</td>
-                                <td>10</td>
+                                <td>{{ $product->name }}</td>
+                                <td>${{ $product->price }}</td>
+                                <td>{{ $product->qty }}</td>
                                 <td>
                                   <a href="/product/edit" class="btn btn-sm btn-outline-primary mr-1">Edit</a>
                                   <a href="" class="btn btn-sm btn-outline-danger">Delete</a>
                                 </td>
                               </tr>
+                              @endforeach
                             </tbody>
                           </table>
+                          <div class="mt-3">
+                            {{ $products->links() }}
+                          </div>
                         </div>
                       </div>
                     </div>
