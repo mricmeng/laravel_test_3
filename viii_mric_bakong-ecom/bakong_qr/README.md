@@ -6,5 +6,5 @@
 #### -php artisan serve
 
 ### 2️⃣ Install Bakong Packages
-### -open chrome url: ( https://packagist.org/packages/khqr-gateway/bakong-khqr-php )
-### copy url: ( composer require khqr-gateway/bakong-khqr-php )->past into Terminal
+#### -open chrome url: ( https://packagist.org/packages/khqr-gateway/bakong-khqr-php )
+#### copy url: ( composer require khqr-gateway/bakong-khqr-php )->past into Terminal
