@@ -1,5 +1,10 @@
-# step 1 តម្តើង laravel 
+# step 1 _/ install laravel/
+### បង្កើត folder payment
 ## -composer global require laravel/installer 
-### -composer global require laravel/installer 
-*-laravel new example-app bakong_qr*
-//laravel_api
+### -laravel new bakong_qr
+### -cd bakong_qr
+### -php artisan serve
+
+# step 2 _/install khqr-gateway/bakong-khqr-php:
+### -open chrome url: ( https://packagist.org/packages/khqr-gateway/bakong-khqr-php )
+### copy url: ( composer require khqr-gateway/bakong-khqr-php )->past into Terminal
