@@ -1,3 +1,3 @@
-<!-- ## step 1 តម្តើង laravel  -->
+# step 1 តម្តើង laravel 
 ## -composer global require laravel/installer 
-/*-laravel new example-app bakong_qr*/
+*-laravel new example-app bakong_qr*
