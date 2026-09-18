@@ -11,9 +11,26 @@
 #### -( composer require simplesoftwareio/simple-qrcode )->(past into Terminal)
  
 ### 3 env
-#### DB_CONNECTION=mysql
-#### DB_HOST=127.0.0.1
-#### DB_PORT=3306
-#### DB_DATABASE= laravel_bankong_payment
-#### DB_USERNAME=root
-#### DB_PASSWORD=
+###### DB_CONNECTION=mysql
+###### DB_HOST=127.0.0.1
+###### DB_PORT=3306
+###### DB_DATABASE= laravel_bankong_payment
+###### DB_USERNAME=root
+###### DB_PASSWORD=
+
+### 4 open Terminal
+#### -php artisan mrigrate
+#### -php artisan make:model Product -m
+
+### 5 find folder (migration->products_table)
+#####   {
+#####       Schema::create('products', function (Blueprint $table) {
+#####            $table->id();
+#####            $table->string('name');
+#####            $table->text('description')->nullable();
+#####            $table->decimal('price', 10,2);
+#####            $table->string('image')->nullable();
+#####            $table->timestamps();
+#####       });
+#####    }
+
