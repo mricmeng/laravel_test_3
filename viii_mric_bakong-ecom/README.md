@@ -199,7 +199,7 @@
     </html>
     ```
 
-15. **find folder views->create_folder(payments)**
+15. **find folder views->create_folder(products)**
 
 * **create_file(index.blacde.php)**
     ```bash
@@ -232,6 +232,137 @@
             </div>
         </div>
     @endsection
+    ```
+
+* **create_file(show.blacde.php)**
+    ```bash 
+    @extends('layouts.app')
+
+    @section('content')
+        <div>
+            <h2>{{$product->name}}</h2>
+
+            <img src="{{$product->image}}">
+
+            <p>{{$product->description}}</p>
+
+            <div>
+                ${{ number_format($product->price, 2)}}
+            </div>
+
+            <form action="{{ route('checkout', $product->id)}}" method="POST">
+                @csrf
+                <button>
+                    Generate KHQR Pay
+                </button>
+            </form>
+        </div>
+    @endsection
+    ```
+
+* **create_file(checkout.blacde.php)**
+    ```bash
+    @extends('layouts.app')
+
+    @section('content')
+        <h2>Scan KHQR</h2>
+
+        <p>
+            <strong>{{$product->name}}</strong>
+            <span>${{ number_format($product->price, 2)}}</span>
+        </p>
+
+        @if ($qr)
+            <div>
+                {!! QrCode::size(220)->generate($qr) !!}
+            </div>  
+        @else
+            <div>
+                Failed to Generate QR
+            </div>
+        @endif
+
+        <div>
+            <div id="countdown">120</div>
+            <small>
+                Expire in <span id="seconds">120</span>
+            </small>
+
+            <a href="{{route('home')}}">
+                back
+            </a>
+        </div>
+
+        <script>
+            let timeLeft = 120;
+
+            const countdownElement = document.getElementById('countdown');
+            const secondsText = document.getElementById('seconds');
+
+            const timer = setInterval(() => {
+                timeLeft--;
+
+                countdownElement.textContent = timeLeft;
+                secondsText.textContent = timeLeft;
+
+                if(timeLeft > 0){
+                    fetch("{{ route('verify.transaction') }}",{
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                        },
+                        body: JSON.stringify({
+                            md5: "{{$md5}}"
+                        })
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        if(data.responseCode === 0){
+                            clearInterval(timer);
+                            alert("Transaction successful!");
+                            window.location.href = "{{ route('home') }}";
+                        }else if(data.failed){
+                            clearInterval(timer);
+                            alert("Transaction failed. please try again.");
+                            window.location.href = "{{ route('home')}}";
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error:", error);
+                    })
+                }
+
+                if(timeLeft <= 0){
+                    clearInterval(timer);
+                    alert('QR expired.');
+                    window.location.href = "{{ route('home') }}"
+                }
+            }, 1000);
+        </script>
+    @endsection
+    ```
+
+16. **find folder views->create_folder(payments)**
+
+* **create_file(result.blacde.php)**
+    ```bash
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>Payment Result</title>
+    </head>
+    <body>
+        <h1>Payment Successful</h1>
+
+        <p>Your payment successful</p>
+
+        <a href="{{route('home')}}">
+            Back to home
+        </a>
+        
+    </body>
+    </html>
     ```
 
 
