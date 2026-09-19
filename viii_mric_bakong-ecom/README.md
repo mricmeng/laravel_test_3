@@ -36,8 +36,8 @@
 
 ##### -php artisan migrate ->(past into terminal)
 ##### -php artisan make:controller ProductController
-
-/*  class ProductController extends Controller
+#
+class ProductController extends Controller
     {
         public function index(){
             $products = Product::all();
@@ -49,5 +49,5 @@
             return view('products.show', compact('product'));
         }
     }
-*/
+#
 
