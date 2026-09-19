@@ -52,10 +52,27 @@
 6. **open Terminal**
     ```bash
     php artisan migrate
+    ```
+
+7. **find folder->Models->Product**
+    ```bash
+    class Product extends Model
+    {
+        protected $fillable = [
+            'name',
+            'description',
+            'price',
+            'image',
+        ];
+    }
+    ```
+
+8. **open Terminal**
+    ```bash
     php artisan make:controller ProductController
     ```
 
-7. **find folder-> ProductController**
+9. **find folder-> ProductController**
     ```bash
     class ProductController extends Controller
         {
@@ -70,6 +87,20 @@
             }
         }
     ````
+
+10. **Register Bakong api**
+    ```bash
+    open google : (Babong open api)
+    in form: 
+    -Organization: software
+    -Project : Ecom
+    -email: .....@gmail
+    -check email->verify->copy token
+    ```
+8. **open Terminal**
+    ```bash
+    php artisan make:controller PaymentController
+    ```
 
 
 
