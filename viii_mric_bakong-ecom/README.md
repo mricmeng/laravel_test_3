@@ -172,6 +172,67 @@
         }
     }
     ```
+13. **find env**
+    ```bash
+    BAKONG_TOKEN = (token from email by bakong open api);
+    ```
+
+14. **find folder views->create_folder(layouts)->create_file(app.blacde.php)**
+    ```bash
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Phone Shop</title>
+    </head>
+    <body>
+        <div>
+            <h1>Phone shop</h1>
+            <p>Secure digital payment experience</p>
+        </div>
+        <div>
+            @yield('content')
+        </div>
+    </body>
+    </html>
+    ```
+
+15. **find folder views->create_folder(payments)**
+
+*create_file(index.blacde.php)
+    ```bash
+    @extends('layouts.app')
+
+    @section('content')
+        <div>
+            <h1>Product List</h1>
+
+            <div>
+                @foreach ($products as $product)
+                    <div>
+                        <div>
+                            <h5>{{$product->name}}</h5>
+
+                            <p>{{$product->description}}</p>
+
+                            <p>
+                                <strong>
+                                    ${{number_format($product->price, 2)}}
+                                </strong>
+                            </p>
+
+                            <a href="{{route('product.show', $product->id)}}">
+                                Buy
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endsection
+    ```
 
 
 
