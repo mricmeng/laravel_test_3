@@ -201,7 +201,7 @@
 
 15. **find folder views->create_folder(payments)**
 
-*create_file(index.blacde.php)
+* **create_file(index.blacde.php)**
     ```bash
     @extends('layouts.app')
 
