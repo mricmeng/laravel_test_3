@@ -14,7 +14,7 @@
 2. **Install Bakong Packages:**
    ```bash
    open chrome url: ( https://packagist.org/packages/khqr-gateway/bakong-khqr-php )
-   copy ( composer require khqr-gateway/bakong-khqr-php )->(past into Terminal)
+   get from url up ( composer require khqr-gateway/bakong-khqr-php )->(past into Terminal)
    copy ( composer require simplesoftwareio/simple-qrcode )->(past into Terminal)
 
    ```
@@ -90,7 +90,7 @@
 
 10. **Register Bakong api**
     ```bash
-    open google : (Babong open api)
+    open google : (Bakong open api)
     in form: 
     -Organization: software
     -Project : Ecom
