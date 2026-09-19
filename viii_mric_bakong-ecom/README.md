@@ -19,8 +19,8 @@
 
    ```
 
-3. **env:**
-    ```bash
+3. **Database Setup:**
+    ```env
         DB_CONNECTION=mysql
         DB_HOST=127.0.0.1
         DB_PORT=3306
@@ -87,7 +87,7 @@
 
 
 
-sameple
+sample
 
 # Product Catalog API / Web App
 
@@ -144,5 +144,12 @@ Before running this project, ensure you have installed:
 * **URL:** `/products/{id}`
 * **Method:** `GET`
 * **Controller Action:** `ProductController@show`
+
+🛠️ Common Markdown Cheat Sheet
+# Heading 1 (Main Title)
+## Heading 2 (Sections)
+* Bullet point (Lists)
+1. Numbered item (Steps)
+`inline code` (Highlighting variables or single commands)
 
 
