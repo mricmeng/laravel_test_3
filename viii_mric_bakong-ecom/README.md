@@ -19,7 +19,7 @@
 
    ```
 
-### 3 **env:**
+3. **env:**
     ```bash
         DB_CONNECTION=mysql
         DB_HOST=127.0.0.1
@@ -29,14 +29,14 @@
         DB_PASSWORD=
     ```
 
-3. **open Terminal**
+4. **open Terminal**
     ```bash
     php artisan mrigrate
     php artisan make:model Product -m
     ```
 
-4. **find folder (migration->products_table)**
-    ```
+5. **find folder (migration->products_table)**
+    ```bash
     {
         Schema::create('products', function (Blueprint $table) {
                 $table->id();
@@ -46,17 +46,17 @@
                 $table->string('image')->nullable();
                 $table->timestamps();
         });
-        }
+    }
     ```
 
-5. **open Terminal**
+6. **open Terminal**
     ```bash
     php artisan migrate
     php artisan make:controller ProductController
     ```
 
-6. **find folder-> ProductController**
-    ```
+7. **find folder-> ProductController**
+    ```bash
     class ProductController extends Controller
         {
             public function index(){
